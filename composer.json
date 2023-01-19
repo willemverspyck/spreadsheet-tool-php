@@ -1,0 +1,43 @@
+{
+    "name": "spyck/spreadsheet",
+    "description": "Simple PHP tool for parsing CSV or Excel spreadsheets",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Willem Verspyck",
+            "email": "willemverspyck@outlook.com",
+            "homepage": "https://verspyck.com",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "csv",
+        "excel",
+        "filter",
+        "parse",
+        "sdk",
+        "spreadsheet",
+        "tsv",
+        "txt"
+    ],
+    "homepage": "https://github.com/willemverspyck/spreadsheet",
+    "type": "library",
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpoffice/phpspreadsheet": "^1",
+        "phpunit/phpunit": "^9",
+        "squizlabs/php_codesniffer": "^3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spyck\\Spreadsheet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spyck\\Spreadsheet\\Tests\\": "tests/"
+        }
+    }
+}
