@@ -18,6 +18,11 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
 
     protected ?Closure $filter = null;
 
+    public static function create(): static
+    {
+        return new static();
+    }
+
     /**
      * {@inheritDoc}
      */
