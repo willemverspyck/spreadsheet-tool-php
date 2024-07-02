@@ -13,7 +13,7 @@ final class ResultTest extends TestCase
     {
         $this->result = new Result();
         $this->result->setCount(2);
-        $this->result->setCountRow(10);
+        $this->result->setTotal(10);
         $this->result->setData([
             [
                 'name' => 'apple',
@@ -28,17 +28,17 @@ final class ResultTest extends TestCase
 
     public function testGetCount(): void
     {
-        self::assertEquals(2, $this->result->getCount());
+        self::assertSame(2, $this->result->getCount());
     }
 
-    public function testGetCountRow(): void
+    public function testGetTotal(): void
     {
-        self::assertEquals(10, $this->result->getCountRow());
+        self::assertSame(10, $this->result->getTotal());
     }
 
     public function testGetData(): void
     {
-        self::assertEquals([
+        self::assertSame([
             [
                 'name' => 'apple',
                 'count' => '10',

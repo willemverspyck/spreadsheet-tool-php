@@ -111,7 +111,7 @@ print_r ($result->getData());
  * ];
  */
 
-print $result->getCountRow();
+print $result->getTotal();
 
 /**
 * Result:

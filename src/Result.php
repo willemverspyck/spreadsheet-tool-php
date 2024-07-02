@@ -7,9 +7,7 @@ namespace Spyck\Spreadsheet;
 final class Result
 {
     private int $count;
-
-    private int $countRow;
-
+    private int $total;
     private array $data;
 
     /**
@@ -30,14 +28,14 @@ final class Result
     /**
      * Get number of rows
      */
-    public function getCountRow(): int
+    public function getTotal(): int
     {
-        return $this->countRow;
+        return $this->total;
     }
 
-    public function setCountRow(int $countRow): self
+    public function setTotal(int $total): self
     {
-        $this->countRow = $countRow;
+        $this->total = $total;
 
         return $this;
     }

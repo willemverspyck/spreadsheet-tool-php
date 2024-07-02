@@ -10,13 +10,11 @@ use Spyck\Spreadsheet\Exception\FieldRequiredException;
 
 abstract class AbstractSpreadsheet implements SpreadsheetInterface
 {
-    protected ?int $rowHeader = 1;
-
+    protected ?int $header = 1;
     protected ?Closure $callback = null;
-
     protected ?Closure $eof = null;
-
     protected ?Closure $filter = null;
+    protected bool $check = true;
 
     public static function create(): static
     {
@@ -34,7 +32,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
 
         $rowCount = 0;
         $rowFields = null;
-        $rowHeader = $this->rowHeader;
+        $rowHeader = $this->header;
         $rowContent = 0;
 
         $hasHeader = null !== $rowHeader;
@@ -85,16 +83,23 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
                     }
 
                     if ($persist) {
-                        if (count($rowFields) > count($row)) {
-                            throw new FieldCountException(sprintf(
-                                'Incorrect field count on line %d (%d instead of %d)',
-                                $rowCount,
-                                count($rowFields),
-                                count($row),
-                            ));
-                        }
+                        $countFields = count($rowFields);
+                        $countRow = count($row);
 
-                        $row = array_slice($row, 0, count($rowFields));
+                        if ($countFields > $countRow) {
+                            if ($this->check) {
+                                throw new FieldCountException(sprintf(
+                                    'Incorrect field count on line %d (%d instead of %d)',
+                                    $rowCount,
+                                    $countFields,
+                                    $countRow,
+                                ));
+                            } else {
+                                $row = array_pad($row, $countFields, null);
+                            }
+                        } elseif ($countFields < $countRow) {
+                            $row = array_slice($row, 0, $countFields);
+                        }
 
                         $returnRow = $this->handleTranslate($fields, $rowFields, $row);
 
@@ -114,7 +119,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
 
         $result = new Result();
         $result->setCount(count($returnData));
-        $result->setCountRow($rowCount);
+        $result->setTotal($rowCount);
         $result->setData($returnData);
 
         $this->closeResource();
@@ -143,9 +148,16 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
         return $this;
     }
 
-    public function setRowHeader(?int $rowHeader): self
+    public function setHeader(?int $header): self
     {
-        $this->rowHeader = $rowHeader;
+        $this->header = $header;
+
+        return $this;
+    }
+
+    public function setCheck(bool $check): self
+    {
+        $this->check = $check;
 
         return $this;
     }

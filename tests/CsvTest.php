@@ -34,7 +34,7 @@ final class CsvTest extends TestCase
 
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
 
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value1',
                 'field2' => 'value2',
@@ -70,7 +70,7 @@ final class CsvTest extends TestCase
         
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
         
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value1',
                 'field2' => 'value2',
@@ -99,11 +99,11 @@ final class CsvTest extends TestCase
             2 => 'field3',
         ];
 
-        $this->csv->setRowHeader(null);
+        $this->csv->setHeader(null);
 
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
 
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value1',
                 'field2' => 'value2',
@@ -136,7 +136,7 @@ final class CsvTest extends TestCase
 
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
 
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value1',
                 'field2' => 'value2',
@@ -166,9 +166,34 @@ final class CsvTest extends TestCase
         ];
 
         self::expectException(FieldCountException::class);
-        self::expectDeprecationMessage('Incorrect field count on line 2 (3 instead of 2)');
+        self::expectExceptionMessage('Incorrect field count on line 2 (3 instead of 2)');
 
         $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
+    }
+
+    public function testGetCsvWithFieldCountErrorDisabled(): void
+    {
+        $content = 'Field1,Field2,Field3';
+        $content .= PHP_EOL;
+        $content .= 'value1,value2';
+
+        $fields = [
+            'Field1' => 'field1',
+            'Field2' => 'field2',
+            'Field3' => 'field3',
+        ];
+
+        $this->csv->setCheck(false);
+
+        $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
+
+        self::assertSame([
+            [
+                'field1' => 'value1',
+                'field2' => 'value2',
+                'field3' => null,
+            ],
+        ], $returnData);
     }
 
     /**
@@ -187,7 +212,7 @@ final class CsvTest extends TestCase
         ];
 
         self::expectException(FieldRequiredException::class);
-        self::expectDeprecationMessage('Missing required fields (Field2) (Field1, Field3)');
+        self::expectExceptionMessage('Missing required fields (Field2) (Field1, Field3)');
 
         $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
     }
@@ -216,7 +241,7 @@ final class CsvTest extends TestCase
 
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
 
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value3',
                 'field2' => 'value4',
@@ -256,7 +281,7 @@ final class CsvTest extends TestCase
 
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
 
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value1',
                 'field2' => 'value2',

@@ -23,7 +23,9 @@ interface SpreadsheetInterface
 
     public function setFilter(callable $filter): self;
 
+    public function setHeader(?int $header): self;
+
     public function setEof(callable $eof): self;
 
-    public function setRowHeader(?int $rowHeader): self;
+    public function setCheck(bool $check): self;
 }

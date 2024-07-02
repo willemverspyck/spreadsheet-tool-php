@@ -12,13 +12,9 @@ use Spyck\Spreadsheet\Exception\NotFoundException;
 class Csv extends AbstractSpreadsheet implements CsvInterface
 {
     private string $delimiter = ',';
-
     private string $enclosure = '"';
-
     private string $escape = '\\';
-
     private bool $gzip = false;
-
     private ?SplFileObject $splFileObject = null;
 
     /**

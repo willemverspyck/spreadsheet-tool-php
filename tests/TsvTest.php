@@ -30,7 +30,7 @@ final class TsvTest extends TestCase
 
         $returnData = $this->tsv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
 
-        self::assertEquals([
+        self::assertSame([
             [
                 'field1' => 'value1',
                 'field2' => 'value2',
