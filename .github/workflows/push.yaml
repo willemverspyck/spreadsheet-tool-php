@@ -1,4 +1,4 @@
-name: Check Code Style and Unit Tests
+name: Check Code Style and Unit Test
 on: [push]
 jobs:
   phpunit:
@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest']
-        php-versions: ['8.2', '8.3']
+        php-versions: ['8.2', '8.3', '8.4']
     steps:
       - uses: actions/checkout@v4
       - name: Setup PHP
@@ -18,5 +18,5 @@ jobs:
         run: composer install --prefer-dist
       - name: Check Code Style
         run: ./vendor/bin/phpcs src -v --standard=PSR2
-      - name: Unit Tests
+      - name: Unit Test
         run: ./vendor/bin/phpunit --coverage-text --colors
