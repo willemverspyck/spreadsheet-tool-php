@@ -14,9 +14,11 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           tools: composer
-      - name: Composer
+      - name: Install Composer (Packages)
         run: composer install --prefer-dist
-      - name: Check Code Style
-        run: ./vendor/bin/phpcs src -v --standard=PSR2
-      - name: Unit Test
+      - name: PHP CS
+        run: ./vendor/bin/phpcs
+      - name: PHP CS Fixer
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff
+      - name: PHP Unit
         run: ./vendor/bin/phpunit --coverage-text --colors
