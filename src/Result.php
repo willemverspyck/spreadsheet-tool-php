@@ -11,7 +11,7 @@ final class Result
     private array $data;
 
     /**
-     * Get number of matches
+     * Get number of matches.
      */
     public function getCount(): int
     {
@@ -26,7 +26,7 @@ final class Result
     }
 
     /**
-     * Get number of rows
+     * Get number of rows.
      */
     public function getTotal(): int
     {

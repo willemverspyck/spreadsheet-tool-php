@@ -7,22 +7,22 @@ namespace Spyck\Spreadsheet;
 interface CsvInterface extends SpreadsheetInterface
 {
     /**
-     * Set the row delimiter
+     * Set the row delimiter.
      */
     public function setDelimiter(string $delimiter): self;
 
     /**
-     * Set the row enclosure
+     * Set the row enclosure.
      */
     public function setEnclosure(string $enclosure): self;
 
     /**
-     * Set the row escape
+     * Set the row escape.
      */
     public function setEscape(string $escape): self;
 
     /**
-     * Set if the file is encrypted with gzip
+     * Set if the file is encrypted with gzip.
      */
     public function setGzip(bool $gzip): self;
 }

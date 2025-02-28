@@ -11,7 +11,7 @@ use Spyck\Spreadsheet\Exception\NotFoundException;
 interface SpreadsheetInterface
 {
     /**
-     * Get CSV data from file
+     * Get CSV data from file.
      *
      * @throws FieldCountException
      * @throws FieldRequiredException

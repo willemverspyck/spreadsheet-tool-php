@@ -17,9 +17,6 @@ class Csv extends AbstractSpreadsheet implements CsvInterface
     private bool $gzip = false;
     private ?SplFileObject $splFileObject = null;
 
-    /**
-     * {@inheritDoc}
-     */
     public function setDelimiter(string $delimiter): self
     {
         $this->delimiter = $delimiter;
@@ -27,9 +24,6 @@ class Csv extends AbstractSpreadsheet implements CsvInterface
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setEnclosure(string $enclosure): self
     {
         $this->enclosure = $enclosure;
@@ -37,9 +31,6 @@ class Csv extends AbstractSpreadsheet implements CsvInterface
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setEscape(string $escape): self
     {
         $this->escape = $escape;
@@ -47,9 +38,6 @@ class Csv extends AbstractSpreadsheet implements CsvInterface
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setGzip(bool $gzip): self
     {
         $this->gzip = $gzip;
@@ -65,8 +53,8 @@ class Csv extends AbstractSpreadsheet implements CsvInterface
 
         $line = $this->splFileObject->fgets();
 
-        /** Skip last empty line, SplFileObject::DROP_NEW_LINE not working as expected */
-        if (strlen($line) === 0 && $this->splFileObject->eof()) {
+        /* Skip last empty line, SplFileObject::DROP_NEW_LINE not working as expected */
+        if (0 === strlen($line) && $this->splFileObject->eof()) {
             return null;
         }
 

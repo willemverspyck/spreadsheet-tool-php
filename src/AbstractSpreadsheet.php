@@ -21,9 +21,6 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
         return new static();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getResult(string $file, array $fields): Result
     {
         $this->openResource($file);
@@ -55,11 +52,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
                     $rowDifference = array_diff(array_keys($fields), $row);
 
                     if (0 !== count($rowDifference)) {
-                        throw new FieldRequiredException(sprintf(
-                            'Missing required fields (%s) (%s)',
-                            implode(', ', $rowDifference),
-                            implode(', ', $row),
-                        ));
+                        throw new FieldRequiredException(sprintf('Missing required fields (%s) (%s)', implode(', ', $rowDifference), implode(', ', $row)));
                     }
 
                     $rowFields = $row;
@@ -88,12 +81,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
 
                         if ($countFields > $countRow) {
                             if ($this->check) {
-                                throw new FieldCountException(sprintf(
-                                    'Incorrect field count on line %d (%d instead of %d)',
-                                    $rowCount,
-                                    $countFields,
-                                    $countRow,
-                                ));
+                                throw new FieldCountException(sprintf('Incorrect field count on line %d (%d instead of %d)', $rowCount, $countFields, $countRow));
                             } else {
                                 $row = array_pad($row, $countFields, null);
                             }
@@ -163,7 +151,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
     }
 
     /**
-     * Handle the callback
+     * Handle the callback.
      */
     protected function handleCallback(array $data, int $index): ?array
     {
@@ -180,7 +168,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
     }
 
     /**
-     * Translate CSV data
+     * Translate CSV data.
      */
     protected function handleTranslate(array $fields, array $rowFields, array $row): array
     {

@@ -49,7 +49,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV with empty line
+     * Test CSV with empty line.
      */
     public function testGetCsvWithEmptyLine(): void
     {
@@ -67,9 +67,9 @@ final class CsvTest extends TestCase
         ];
 
         $this->csv->setDelimiter(';');
-        
+
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
-        
+
         self::assertSame([
             [
                 'field1' => 'value1',
@@ -85,7 +85,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV without header
+     * Test CSV without header.
      */
     public function testGetCsvWithoutHeader(): void
     {
@@ -118,7 +118,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV with field count
+     * Test CSV with field count.
      */
     public function testGetCsvWithFieldCount(): void
     {
@@ -151,7 +151,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV with incorrect fields count
+     * Test CSV with incorrect fields count.
      */
     public function testGetCsvWithFieldCountError(): void
     {
@@ -197,7 +197,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV with missing required fields
+     * Test CSV with missing required fields.
      */
     public function testGetCsvWithFieldError(): void
     {
@@ -218,7 +218,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV with filter
+     * Test CSV with filter.
      */
     public function testGetCsvWithFilter(): void
     {
@@ -254,7 +254,7 @@ final class CsvTest extends TestCase
     }
 
     /**
-     * Test CSV with EOF check
+     * Test CSV with EOF check.
      */
     public function testGetCsvWithEof(): void
     {
@@ -276,7 +276,7 @@ final class CsvTest extends TestCase
         ];
 
         $this->csv->setEof(function ($data, $count): bool {
-            return $data[0] === 'Count' && $data[1] === (string) $count;
+            return 'Count' === $data[0] && $data[1] === (string) $count;
         });
 
         $returnData = $this->csv->getResult(sprintf('data://text/plain,%s', $content), $fields)->getData();
