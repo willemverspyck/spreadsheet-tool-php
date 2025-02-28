@@ -4,8 +4,8 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $finder = (new PhpCsFixer\Finder())
     ->in([
-        sprintf('%s/config', __DIR__),
         sprintf('%s/src', __DIR__),
+        sprintf('%s/tests', __DIR__),
     ]);
 
 return (new PhpCsFixer\Config())
