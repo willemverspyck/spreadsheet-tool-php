@@ -3,7 +3,7 @@
 Simple tool for parsing CSV or Excel spreadsheets, with the possibility to filter rows. 
 
 ## Requirements
-PHP ^8.2
+PHP ^8.3
 
 ## Installation
 Install it using [Composer](https://getcomposer.org/):
