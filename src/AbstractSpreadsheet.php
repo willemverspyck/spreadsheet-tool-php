@@ -115,35 +115,35 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
         return $result;
     }
 
-    public function setCallback(callable $callback): self
+    public function setCallback(callable $callback): static
     {
         $this->callback = $callback;
 
         return $this;
     }
 
-    public function setFilter(callable $filter): self
+    public function setFilter(callable $filter): static
     {
         $this->filter = $filter;
 
         return $this;
     }
 
-    public function setEof(callable $eof): self
+    public function setEof(callable $eof): static
     {
         $this->eof = $eof;
 
         return $this;
     }
 
-    public function setHeader(?int $header): self
+    public function setHeader(?int $header): static
     {
         $this->header = $header;
 
         return $this;
     }
 
-    public function setCheck(bool $check): self
+    public function setCheck(bool $check): static
     {
         $this->check = $check;
 

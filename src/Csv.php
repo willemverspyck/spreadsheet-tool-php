@@ -17,28 +17,28 @@ class Csv extends AbstractSpreadsheet implements CsvInterface
     private bool $gzip = false;
     private ?SplFileObject $splFileObject = null;
 
-    public function setDelimiter(string $delimiter): self
+    public function setDelimiter(string $delimiter): static
     {
         $this->delimiter = $delimiter;
 
         return $this;
     }
 
-    public function setEnclosure(string $enclosure): self
+    public function setEnclosure(string $enclosure): static
     {
         $this->enclosure = $enclosure;
 
         return $this;
     }
 
-    public function setEscape(string $escape): self
+    public function setEscape(string $escape): static
     {
         $this->escape = $escape;
 
         return $this;
     }
 
-    public function setGzip(bool $gzip): self
+    public function setGzip(bool $gzip): static
     {
         $this->gzip = $gzip;
 

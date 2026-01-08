@@ -19,13 +19,13 @@ interface SpreadsheetInterface
      */
     public function getResult(string $file, array $fields): Result;
 
-    public function setCallback(callable $callback): self;
+    public function setCallback(callable $callback): static;
 
-    public function setFilter(callable $filter): self;
+    public function setFilter(callable $filter): static;
 
-    public function setHeader(?int $header): self;
+    public function setHeader(?int $header): static;
 
-    public function setEof(callable $eof): self;
+    public function setEof(callable $eof): static;
 
-    public function setCheck(bool $check): self;
+    public function setCheck(bool $check): static;
 }

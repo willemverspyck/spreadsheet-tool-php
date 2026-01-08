@@ -9,20 +9,20 @@ interface CsvInterface extends SpreadsheetInterface
     /**
      * Set the row delimiter.
      */
-    public function setDelimiter(string $delimiter): self;
+    public function setDelimiter(string $delimiter): static;
 
     /**
      * Set the row enclosure.
      */
-    public function setEnclosure(string $enclosure): self;
+    public function setEnclosure(string $enclosure): static;
 
     /**
      * Set the row escape.
      */
-    public function setEscape(string $escape): self;
+    public function setEscape(string $escape): static;
 
     /**
      * Set if the file is encrypted with gzip.
      */
-    public function setGzip(bool $gzip): self;
+    public function setGzip(bool $gzip): static;
 }
