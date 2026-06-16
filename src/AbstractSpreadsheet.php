@@ -83,7 +83,7 @@ abstract class AbstractSpreadsheet implements SpreadsheetInterface
                             if ($this->check) {
                                 throw new FieldCountException(sprintf('Incorrect field count on line %d (%d instead of %d)', $rowCount, $countFields, $countRow));
                             }
-                            
+
                             $row = array_pad($row, $countFields, null);
                         } elseif ($countFields < $countRow) {
                             $row = array_slice($row, 0, $countFields);
